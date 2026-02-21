@@ -1,4 +1,11 @@
 {
     "files": [],
+    "compilerOptions": {
+        /* Replace baseUrl with this if you want to silence the warning */
+        // "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
     "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
 }

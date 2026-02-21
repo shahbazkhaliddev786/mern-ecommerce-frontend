@@ -1,10 +1,9 @@
-import Header from '@/shared/components/header'
+import HomePage from './features/aljo-store/pages/home-page'
 
 export default function App() {
     return (
         <div>
-            <Header />
-            React Production Ecommerce
+            <HomePage />
         </div>
     )
 }
