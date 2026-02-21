@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { ShoppingBag, Search, Menu } from 'lucide-react'
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/shared/components/ui/sheet'
 import { Button } from './ui/button'

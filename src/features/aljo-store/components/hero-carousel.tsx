@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { Button } from '@/shared/components/ui/button'
 import hero1 from '@/shared/assets/images/hero-1.jpg'
 import hero2 from '@/shared/assets/images/hero-1.jpg'

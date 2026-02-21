@@ -1,5 +1,180 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Footer Component > matches snapshot 1`] = `
+<div>
+  <footer
+    class="bg-primary text-primary-foreground"
+  >
+    <div
+      class="container mx-auto px-4 py-16"
+    >
+      <div
+        class="grid grid-cols-1 md:grid-cols-4 gap-10"
+      >
+        <div>
+          <h3
+            class="font-display text-xl font-bold mb-4"
+          >
+            Aljo Store
+          </h3>
+          <p
+            class="text-primary-foreground/70 text-sm leading-relaxed"
+          >
+            Curating timeless pieces crafted for modern living. Quality, sustainability, and style in every detail.
+          </p>
+        </div>
+        <div>
+          <h4
+            class="font-semibold mb-4 text-sm uppercase tracking-wider"
+          >
+            Shop
+          </h4>
+          <ul
+            class="space-y-3 text-sm text-primary-foreground/70"
+          >
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/products"
+              >
+                All Products
+              </a>
+            </li>
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/products"
+              >
+                New Arrivals
+              </a>
+            </li>
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/products"
+              >
+                Best Sellers
+              </a>
+            </li>
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/products"
+              >
+                Sale
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4
+            class="font-semibold mb-4 text-sm uppercase tracking-wider"
+          >
+            Company
+          </h4>
+          <ul
+            class="space-y-3 text-sm text-primary-foreground/70"
+          >
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/about"
+              >
+                About Us
+              </a>
+            </li>
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/about"
+              >
+                Sustainability
+              </a>
+            </li>
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/about"
+              >
+                Careers
+              </a>
+            </li>
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/about"
+              >
+                Press
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4
+            class="font-semibold mb-4 text-sm uppercase tracking-wider"
+          >
+            Customer Care
+          </h4>
+          <ul
+            class="space-y-3 text-sm text-primary-foreground/70"
+          >
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/about"
+              >
+                Contact Us
+              </a>
+            </li>
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/about"
+              >
+                Shipping & Returns
+              </a>
+            </li>
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/about"
+              >
+                FAQ
+              </a>
+            </li>
+            <li>
+              <a
+                class="hover:text-primary-foreground transition-colors"
+                data-discover="true"
+                href="/about"
+              >
+                Size Guide
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="border-t border-primary-foreground/20 mt-12 pt-8 text-center text-sm text-primary-foreground/50"
+      >
+        © 2026 Aljo Store. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</div>
+`;
+
 exports[`Footer Component > matches the snapshot 1`] = `
 <div>
   <div>

@@ -1,5 +1,347 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`PageLayout Component > matches snapshot (standalone) 1`] = `
+<div>
+  <div
+    class="min-h-screen flex flex-col"
+  >
+    <header
+      class="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b"
+    >
+      <div
+        class="container mx-auto px-4 h-16 flex items-center justify-between"
+      >
+        <a
+          class="font-display text-2xl font-bold tracking-tight"
+          data-discover="true"
+          href="/"
+        >
+          Aljo Store
+        </a>
+        <nav
+          class="hidden md:flex items-center gap-8"
+        >
+          <a
+            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            data-discover="true"
+            href="/"
+          >
+            Home
+          </a>
+          <a
+            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            data-discover="true"
+            href="/products"
+          >
+            Products
+          </a>
+          <a
+            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            data-discover="true"
+            href="/about"
+          >
+            About
+          </a>
+          <a
+            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            data-discover="true"
+            href="/contact"
+          >
+            Contact
+          </a>
+        </nav>
+        <div
+          class="flex items-center gap-4"
+        >
+          <a
+            class="hidden sm:block text-muted-foreground hover:text-foreground transition-colors"
+            data-discover="true"
+            href="/profile"
+          >
+            <button
+              class="inline-flex items-center justify-center whitespace-nowrap font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md gap-1.5 has-[>svg]:px-2.5 text-base px-4"
+              data-size="sm"
+              data-slot="button"
+              data-variant="ghost"
+            >
+              Sign up
+            </button>
+          </a>
+          <a
+            class="text-muted-foreground hover:text-foreground transition-colors"
+            data-discover="true"
+            href="/products"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-search h-5 w-5"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m21 21-4.34-4.34"
+              />
+              <circle
+                cx="11"
+                cy="11"
+                r="8"
+              />
+            </svg>
+          </a>
+          <a
+            class="relative text-muted-foreground hover:text-foreground transition-colors"
+            data-discover="true"
+            href="/cart"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-shopping-bag h-5 w-5"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10a4 4 0 0 1-8 0"
+              />
+              <path
+                d="M3.103 6.034h17.794"
+              />
+              <path
+                d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"
+              />
+            </svg>
+            <span
+              class="absolute -top-2 -right-2 bg-accent text-accent-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold"
+            >
+              3
+            </span>
+          </a>
+          <button
+            aria-controls="radix-_r_9_"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            class="md:hidden text-muted-foreground hover:text-foreground"
+            data-slot="sheet-trigger"
+            data-state="closed"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-menu h-5 w-5"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 5h16"
+              />
+              <path
+                d="M4 12h16"
+              />
+              <path
+                d="M4 19h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main
+      class="flex-1"
+    />
+    <footer
+      class="bg-primary text-primary-foreground"
+    >
+      <div
+        class="container mx-auto px-4 py-16"
+      >
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 gap-10"
+        >
+          <div>
+            <h3
+              class="font-display text-xl font-bold mb-4"
+            >
+              Aljo Store
+            </h3>
+            <p
+              class="text-primary-foreground/70 text-sm leading-relaxed"
+            >
+              Curating timeless pieces crafted for modern living. Quality, sustainability, and style in every detail.
+            </p>
+          </div>
+          <div>
+            <h4
+              class="font-semibold mb-4 text-sm uppercase tracking-wider"
+            >
+              Shop
+            </h4>
+            <ul
+              class="space-y-3 text-sm text-primary-foreground/70"
+            >
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/products"
+                >
+                  All Products
+                </a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/products"
+                >
+                  New Arrivals
+                </a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/products"
+                >
+                  Best Sellers
+                </a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/products"
+                >
+                  Sale
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-semibold mb-4 text-sm uppercase tracking-wider"
+            >
+              Company
+            </h4>
+            <ul
+              class="space-y-3 text-sm text-primary-foreground/70"
+            >
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/about"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/about"
+                >
+                  Sustainability
+                </a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/about"
+                >
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/about"
+                >
+                  Press
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-semibold mb-4 text-sm uppercase tracking-wider"
+            >
+              Customer Care
+            </h4>
+            <ul
+              class="space-y-3 text-sm text-primary-foreground/70"
+            >
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/about"
+                >
+                  Contact Us
+                </a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/about"
+                >
+                  Shipping & Returns
+                </a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/about"
+                >
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-primary-foreground transition-colors"
+                  data-discover="true"
+                  href="/about"
+                >
+                  Size Guide
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-primary-foreground/20 mt-12 pt-8 text-center text-sm text-primary-foreground/50"
+        >
+          © 2026 Aljo Store. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+`;
+
 exports[`PageLayout Component > matches the snapshot 1`] = `
 <div>
   <div>
