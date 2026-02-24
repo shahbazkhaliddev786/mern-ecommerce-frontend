@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, it, expect } from 'vitest'
 
-import PageLayout from '../layouts/page-layout'
+import PageLayout from '@/shared/layouts/page-layout'
 
 describe('PageLayout Component', () => {
     const renderPageLayout = () =>

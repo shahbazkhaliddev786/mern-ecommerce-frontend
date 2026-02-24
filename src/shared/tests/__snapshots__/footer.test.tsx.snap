@@ -174,11 +174,3 @@ exports[`Footer Component > matches snapshot 1`] = `
   </footer>
 </div>
 `;
-
-exports[`Footer Component > matches the snapshot 1`] = `
-<div>
-  <div>
-    footer
-  </div>
-</div>
-`;
