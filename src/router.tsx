@@ -1,7 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from './App'
-import { AboutPage, NotFoundPage } from './features/aljo-store/index'
-import PageLayout from './shared/layouts/page-layout'
+import { AboutPage, NotFoundPage } from '@/features/aljo-store/index'
+import { SignupPage, LoginPage, ForgotPasswordPage } from '@/features/authentication/index'
+import PageLayout from '@/shared/layouts/page-layout'
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +26,18 @@ export const router = createBrowserRouter([
             {
                 path: 'contact',
                 element: <NotFoundPage />
+            },
+            {
+                path: 'signup',
+                element: <SignupPage />
+            },
+            {
+                path: 'login',
+                element: <LoginPage />
+            },
+            {
+                path: 'forgot-password',
+                element: <ForgotPasswordPage />
             }
         ]
     }

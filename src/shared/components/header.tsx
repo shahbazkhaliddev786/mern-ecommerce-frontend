@@ -30,7 +30,7 @@ export default function Header() {
                 </nav>
 
                 <div className="flex items-center gap-4">
-                    <Link to="/profile" className="hidden sm:block text-muted-foreground hover:text-foreground transition-colors">
+                    <Link to="/signup" className="hidden sm:block text-muted-foreground hover:text-foreground transition-colors">
                         <Button variant="ghost" size="sm" className="text-base px-4">
                             Sign up
                         </Button>

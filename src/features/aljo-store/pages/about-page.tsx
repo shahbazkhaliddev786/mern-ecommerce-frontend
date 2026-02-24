@@ -1,7 +1,7 @@
-import MissionSection from '../components/mission-section'
-import StatsSection from '../components/stats-section'
-import ValueSection from '../components/value-section'
-import AboutSection from '../components/about-section'
+import MissionSection from '@/features/aljo-store/components/mission-section'
+import StatsSection from '@/features/aljo-store/components/stats-section'
+import ValueSection from '@/features/aljo-store/components/value-section'
+import AboutSection from '@/features/aljo-store/components/about-section'
 
 export default function AboutPage() {
     return (

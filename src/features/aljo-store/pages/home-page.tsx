@@ -1,7 +1,7 @@
 import HeroCarousel from '@/features/aljo-store/components/hero-carousel'
-import FeaturedProducts from '../components/featured-products'
-import NewArrivals from '../components/new-arrivals'
-import PurposeSection from '../components/purpose-section'
+import FeaturedProducts from '@/features/aljo-store/components/featured-products'
+import NewArrivals from '@/features/aljo-store/components/new-arrivals'
+import PurposeSection from '@/features/aljo-store/components/purpose-section'
 
 export default function HomePage() {
     return (
