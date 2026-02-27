@@ -4,6 +4,7 @@ import './index.css'
 import * as Sentry from '@sentry/react'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router.tsx'
+import { Providers } from '@/shared/lib/providers.tsx'
 
 Sentry.init({
     dsn: 'https://d4037a264e78f666e70d3b90762d52cc@o4510863473573889.ingest.us.sentry.io/4510863482880001',
@@ -13,7 +14,9 @@ Sentry.init({
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <RouterProvider router={router} />
+        <Providers>
+            <RouterProvider router={router} />
+        </Providers>
     </StrictMode>
 )
 
