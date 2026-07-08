@@ -1,1 +1,2 @@
-// import export from here
+export { ProfilePage } from './pages/profile-page'
+export { EditProfilePage } from './pages/edit-profile-page'

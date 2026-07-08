@@ -1,9 +1,40 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Eye, EyeOff } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
 import { Label } from '@/shared/components/ui/label'
+import { signupSchema, type SignupFormData } from '../schemas/auth.schema'
+import { useAppDispatch, useAppSelector } from '@/shared/store/hooks'
+import { signupUser } from '../slices/auth-slice'
+import { toast } from 'react-toastify'
 
 export default function Signup() {
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+    const [showPassword, setShowPassword] = useState(false)
+    const { isLoading, error: authError } = useAppSelector((state) => state.auth)
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<SignupFormData>({
+        resolver: zodResolver(signupSchema)
+    })
+
+    const onSubmit = async (data: SignupFormData) => {
+        try {
+            await dispatch(signupUser(data)).unwrap()
+            toast.success('Registration successful! Check your email.')
+            navigate('/verify-email')
+        } catch (error) {
+            toast.error(typeof error === 'string' ? error : 'Signup failed')
+        }
+    }
+
     return (
         <section className="container mx-auto px-4 py-16 flex justify-center">
             <div className="w-full max-w-md">
@@ -12,33 +43,45 @@ export default function Signup() {
                     <p className="text-muted-foreground">Join Aljo Store and start shopping</p>
                 </div>
 
-                <div className="bg-card border rounded-lg p-6 space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="firstName">First Name</Label>
-                            <Input id="firstName" placeholder="John" />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="lastName">Last Name</Label>
-                            <Input id="lastName" placeholder="Doe" />
-                        </div>
+                <form onSubmit={handleSubmit(onSubmit)} className="bg-card border rounded-lg p-6 space-y-4">
+                    {authError && <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-md text-sm text-center">{authError}</div>}
+
+                    <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input id="name" placeholder="John Doe" {...register('name')} />
+                        {errors.name && <span className="text-xs text-red-500">{errors.name.message}</span>}
                     </div>
+
                     <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="john@example.com" />
+                        <Input id="email" type="email" placeholder="john@example.com" {...register('email')} />
+                        {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
                     </div>
+
                     <div className="space-y-2">
                         <Label htmlFor="password">Password</Label>
-                        <Input id="password" type="password" placeholder="••••••••" />
+                        <div className="relative">
+                            <Input id="password" type={showPassword ? 'text' : 'password'} placeholder="••••••••" {...register('password')} />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
+                                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                            </button>
+                        </div>
+                        {errors.password && <span className="text-xs text-red-500">{errors.password.message}</span>}
                     </div>
+
                     <div className="space-y-2">
-                        <Label htmlFor="confirmPassword">Confirm Password</Label>
-                        <Input id="confirmPassword" type="password" placeholder="••••••••" />
+                        <Label htmlFor="profile">Profile Picture (Optional)</Label>
+                        <Input id="profile" type="file" accept="image/*" {...register('profile')} />
+                        {errors.profile && <span className="text-xs text-red-500">{errors.profile.message as string}</span>}
                     </div>
-                    <Button className="w-full" size="lg">
-                        Create Account
+
+                    <Button type="submit" disabled={isLoading} className="w-full" size="lg">
+                        {isLoading ? 'Creating Account...' : 'Create Account'}
                     </Button>
-                </div>
+                </form>
 
                 <p className="text-center text-sm text-muted-foreground mt-6">
                     Already have an account?{' '}

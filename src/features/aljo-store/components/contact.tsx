@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -6,7 +5,7 @@ import * as z from 'zod'
 
 import { Button } from '@/shared/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/shared/components/ui/card'
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/shared/components/ui/field'
+import { Field, FieldError, FieldGroup, FieldLabel } from '@/shared/components/ui/field'
 import { Input } from '@/shared/components/ui/input'
 import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from '@/shared/components/ui/input-group'
 
@@ -17,74 +16,103 @@ export function ContactForm() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            title: '',
-            description: ''
+            name: '',
+            email: '',
+            message: ''
         }
     })
 
-    function onSubmit(data: z.infer<typeof formSchema>) {
-        toast('You submitted the following values:', {
-            description: (
-                <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
-                    <code>{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
-            position: 'bottom-right',
-            classNames: {
-                content: 'flex flex-col gap-2'
-            },
-            style: {
-                '--border-radius': 'calc(var(--radius)  + 4px)'
-            } as React.CSSProperties
-        })
+    async function onSubmit(data: z.infer<typeof formSchema>) {
+        try {
+            const response = await fetch('https://hook.eu1.make.com/mr9do8jl77m42haz49l5g6tmfo2cszyl', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+
+            if (!response.ok) {
+                throw new Error('Failed to submit form')
+            }
+
+            toast.success('Message sent successfully!', {
+                description: 'We will get back to you as soon as possible.',
+                position: 'bottom-right'
+            })
+
+            form.reset()
+        } catch {
+            toast.error('Failed to send message.', {
+                description: 'Please try again later.',
+                position: 'bottom-right'
+            })
+        }
     }
 
     return (
         <Card className="w-full sm:max-w-md">
             <CardHeader>
-                <CardTitle>Bug Report</CardTitle>
-                <CardDescription>Help us improve by reporting bugs you encounter.</CardDescription>
+                <CardTitle>Contact Us</CardTitle>
+                <CardDescription>We're here to help. Reach out with any questions or concerns.</CardDescription>
             </CardHeader>
             <CardContent>
                 <form id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>
                     <FieldGroup>
                         <Controller
-                            name="title"
+                            name="name"
                             control={form.control}
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-rhf-demo-title">Bug Title</FieldLabel>
+                                    <FieldLabel htmlFor="form-rhf-name">Name</FieldLabel>
                                     <Input
                                         {...field}
-                                        id="form-rhf-demo-title"
+                                        id="form-rhf-name"
                                         aria-invalid={fieldState.invalid}
-                                        placeholder="Login button not working on mobile"
-                                        autoComplete="off"
+                                        placeholder="Enter your name"
+                                        autoComplete="name"
                                     />
                                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                 </Field>
                             )}
                         />
                         <Controller
-                            name="description"
+                            name="email"
                             control={form.control}
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-rhf-demo-description">Description</FieldLabel>
+                                    <FieldLabel htmlFor="form-rhf-email">Email</FieldLabel>
+                                    <Input
+                                        {...field}
+                                        id="form-rhf-email"
+                                        type="email"
+                                        aria-invalid={fieldState.invalid}
+                                        placeholder="Enter your email"
+                                        autoComplete="email"
+                                    />
+                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+                        />
+                        <Controller
+                            name="message"
+                            control={form.control}
+                            render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                    <FieldLabel htmlFor="form-rhf-message">Message</FieldLabel>
                                     <InputGroup>
                                         <InputGroupTextarea
                                             {...field}
-                                            id="form-rhf-demo-description"
-                                            placeholder="I'm having an issue with the login button on mobile."
+                                            id="form-rhf-message"
+                                            placeholder="Enter your message"
                                             rows={6}
                                             className="min-h-24 resize-none"
                                             aria-invalid={fieldState.invalid}
                                         />
                                         <InputGroupAddon align="block-end">
-                                            <InputGroupText className="tabular-nums">{field.value.length}/100 characters</InputGroupText>
+                                            <InputGroupText className="tabular-nums">{field.value?.length || 0}/500 characters</InputGroupText>
                                         </InputGroupAddon>
                                     </InputGroup>
-                                    <FieldDescription>Include steps to reproduce, expected behavior, and what actually happened.</FieldDescription>
                                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                 </Field>
                             )}
@@ -97,8 +125,8 @@ export function ContactForm() {
                     <Button type="button" variant="outline" onClick={() => form.reset()}>
                         Reset
                     </Button>
-                    <Button type="submit" form="form-rhf-demo">
-                        Submit
+                    <Button type="submit" form="form-rhf-demo" disabled={form.formState.isSubmitting}>
+                        {form.formState.isSubmitting ? 'Submitting...' : 'Submit'}
                     </Button>
                 </Field>
             </CardFooter>

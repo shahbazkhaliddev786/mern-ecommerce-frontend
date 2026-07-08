@@ -69,7 +69,7 @@ const filters = [
     }
 ]
 
-function classNames(...classes) {
+function classNames(...classes: (string | false | null | undefined)[]) {
     return classes.filter(Boolean).join(' ')
 }
 

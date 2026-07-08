@@ -1,9 +1,44 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Eye, EyeOff } from 'lucide-react'
+import { useQueryClient } from '@tanstack/react-query'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
 import { Label } from '@/shared/components/ui/label'
+import { loginSchema, type LoginFormData } from '../schemas/auth.schema'
+import { useAppDispatch, useAppSelector } from '@/shared/store/hooks'
+import { loginUser } from '../slices/auth-slice'
+import { toast } from 'react-toastify'
 
 export default function Login() {
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+    const queryClient = useQueryClient()
+    const [showPassword, setShowPassword] = useState(false)
+    const { isLoading, error: authError } = useAppSelector((state) => state.auth)
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<LoginFormData>({
+        resolver: zodResolver(loginSchema)
+    })
+
+    const onSubmit = async (data: LoginFormData) => {
+        try {
+            const response = await dispatch(loginUser(data)).unwrap()
+            queryClient.invalidateQueries({ queryKey: ['cart'] })
+            toast.success('Successfully logged in!')
+            const isAdmin = response.user.role === 'admin'
+            navigate(isAdmin ? '/admin' : '/products')
+        } catch (error) {
+            toast.error(typeof error === 'string' ? error : 'Login failed')
+        }
+    }
+
     return (
         <section className="container mx-auto px-4 py-16 flex justify-center">
             <div className="w-full max-w-md">
@@ -12,11 +47,15 @@ export default function Login() {
                     <p className="text-muted-foreground">Sign in to your Aljo Store account</p>
                 </div>
 
-                <div className="bg-card border rounded-lg p-6 space-y-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="bg-card border rounded-lg p-6 space-y-4">
+                    {authError && <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-md text-sm text-center">{authError}</div>}
+
                     <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="john@example.com" />
+                        <Input id="email" type="email" placeholder="john@example.com" {...register('email')} />
+                        {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
                     </div>
+
                     <div className="space-y-2">
                         <div className="flex items-center justify-between">
                             <Label htmlFor="password">Password</Label>
@@ -24,12 +63,22 @@ export default function Login() {
                                 Forgot password?
                             </Link>
                         </div>
-                        <Input id="password" type="password" placeholder="••••••••" />
+                        <div className="relative">
+                            <Input id="password" type={showPassword ? 'text' : 'password'} placeholder="••••••••" {...register('password')} />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
+                                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                            </button>
+                        </div>
+                        {errors.password && <span className="text-xs text-red-500">{errors.password.message}</span>}
                     </div>
-                    <Button className="w-full" size="lg">
-                        Sign In
+
+                    <Button type="submit" disabled={isLoading} className="w-full" size="lg">
+                        {isLoading ? 'Signing In...' : 'Sign In'}
                     </Button>
-                </div>
+                </form>
 
                 <p className="text-center text-sm text-muted-foreground mt-6">
                     Don't have an account?{' '}

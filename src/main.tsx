@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import * as Sentry from '@sentry/react'
 import { RouterProvider } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { router } from './router.tsx'
 import { Providers } from '@/shared/lib/providers.tsx'
 
@@ -16,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <Providers>
             <RouterProvider router={router} />
+            <ToastContainer position="top-right" autoClose={3000} />
         </Providers>
     </StrictMode>
 )
