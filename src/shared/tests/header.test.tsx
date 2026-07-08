@@ -1,17 +1,26 @@
-import { render, screen, waitFor } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 
 import Header from '../components/header'
+import { renderWithProviders } from './test-utils'
+
+vi.mock('@/features/products/services/cart.service', () => ({
+    cartService: {
+        getCart: vi.fn().mockResolvedValue({
+            _id: 'cart-1',
+            user: 'user-1',
+            items: [],
+            itemsCount: 3,
+            subtotal: 0,
+            createdAt: '',
+            updatedAt: ''
+        })
+    }
+}))
 
 describe('Header Component', () => {
-    const renderHeader = () =>
-        render(
-            <MemoryRouter initialEntries={['/']}>
-                <Header />
-            </MemoryRouter>
-        )
+    const renderHeader = () => renderWithProviders(<Header />)
 
     it('renders the brand name as a link to home', () => {
         renderHeader()
@@ -28,12 +37,13 @@ describe('Header Component', () => {
         expect(screen.getByRole('link', { name: 'Contact' })).toBeInTheDocument()
     })
 
-    it('renders action icons (search + cart with badge)', () => {
+    it('renders action icons (search + cart with badge)', async () => {
         renderHeader()
+        await waitFor(() => expect(screen.getByText('3')).toBeInTheDocument())
+
         const cartLink = screen.getByRole('link', { name: /3/i })
         expect(cartLink).toBeInTheDocument()
         expect(cartLink).toHaveAttribute('href', '/cart')
-        expect(screen.getByText('3')).toBeInTheDocument()
 
         // Search link (brittle without aria-label)
         expect(screen.getByRole('link', { name: '' })).toBeInTheDocument()
@@ -77,8 +87,9 @@ describe('Header Component', () => {
         expect(screen.getByRole('link', { name: 'Sign Up' })).toBeInTheDocument()
     })
 
-    it('matches snapshot', () => {
+    it('matches snapshot', async () => {
         const { container } = renderHeader()
+        await waitFor(() => expect(screen.getByText('3')).toBeInTheDocument())
         expect(container).toMatchSnapshot()
     })
 })

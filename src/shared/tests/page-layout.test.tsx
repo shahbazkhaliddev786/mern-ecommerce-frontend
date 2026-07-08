@@ -1,16 +1,25 @@
-import { render, screen } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
-import { describe, it, expect } from 'vitest'
+import { screen, waitFor } from '@testing-library/react'
+import { describe, it, expect, vi } from 'vitest'
 
 import PageLayout from '@/shared/layouts/page-layout'
+import { renderWithProviders } from './test-utils'
+
+vi.mock('@/features/products/services/cart.service', () => ({
+    cartService: {
+        getCart: vi.fn().mockResolvedValue({
+            _id: 'cart-1',
+            user: 'user-1',
+            items: [],
+            itemsCount: 3,
+            subtotal: 0,
+            createdAt: '',
+            updatedAt: ''
+        })
+    }
+}))
 
 describe('PageLayout Component', () => {
-    const renderPageLayout = () =>
-        render(
-            <MemoryRouter initialEntries={['/']}>
-                <PageLayout />
-            </MemoryRouter>
-        )
+    const renderPageLayout = () => renderWithProviders(<PageLayout />)
 
     it('renders without crashing and includes Header, main, and Footer', () => {
         renderPageLayout()
@@ -44,8 +53,9 @@ describe('PageLayout Component', () => {
         expect(mainElement).toHaveClass('flex-1')
     })
 
-    it('matches snapshot (standalone)', () => {
+    it('matches snapshot (standalone)', async () => {
         const { container } = renderPageLayout()
+        await waitFor(() => expect(screen.getByText('3')).toBeInTheDocument())
         expect(container).toMatchSnapshot()
     })
 })
